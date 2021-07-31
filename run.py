@@ -69,7 +69,7 @@ def main():
     while True:
         print(""*10)
         print("Hello, Welcome to password manager. If a registered user, Select Login otherwise SignUp")
-        print("-"*93)
+        print("-"*87)
         print("Use l for LogIn or s for SignUp")
         print(""*10)
 
@@ -120,11 +120,12 @@ def main():
                 while True:
                     print(f"{loginUsername} Welcome to Password Manager App. Keep your Password secure")
                     print("-"*64)
-                    print("Use these key terms to navigate the app")
-                    print("add - add a new account credentials")
-                    print("view - display all user accounts")
-                    print("search - search account credentials")
-                    print("exit - exit the app")
+                    print("Use these key terms to navigate the app:-")
+                    print(""*10)
+                    print(" add - add a new account credentials")
+                    print(" view - display all user accounts")
+                    print(" search - search account credentials")
+                    print(" exit - exit the app")
                     print(""*10)
 
                     navigate = input()
@@ -132,7 +133,7 @@ def main():
                     
                     if navigate == "add":
                         print("Enter user account credentials")
-                        print("-"*25)
+                        print("-"*30)
                         print("Enter the site's or app's name")
                         siteName = input()
                         print(""*10)
@@ -188,8 +189,10 @@ def main():
                         print("Enter the site name of the account credentials you want to search")
                         searchInput = input()
                         if check_existing_accounts(searchInput):
+                                print(""*10)
                                 search_account = find_account(searchInput)
-                                print(f"ame: {search_account.siteName}")
+                                print(""*10)
+                                print(f"Site Name: {search_account.siteName}")
                                 print('-' * 30)
 
                                 print(f"Account Username.....{search_account.accountUsername}")
