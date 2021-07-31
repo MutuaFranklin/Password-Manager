@@ -113,93 +113,96 @@ def main():
 
             print("Enter your password..")
             loginPassword=input()
+
+            while True:
+                if find_user(loginPassword):
+                    print("\n")
+                    print(f"{loginUsername} Welcome to Password Manager App. Keep your Password secure")
+                    print("-"*60)
+                    print("Use these key terms to navigate the app")
+                    print("add - add a new account credentials")
+                    print("view - display all user accounts")
+                    print("search - search account credentials")
+                    print("exit - exit the app")
+                    print(""*10)
+
+                    navigate = input()
+                    print("\n")
+                    
+                    if navigate == "add":
+                        print("Enter user account credentials")
+                        print("-"*25)
+                        print("Enter the site's or app's name")
+                        siteName = input()
+                        print(""*10)
+
+                        print("Enter accounts username")
+                        accountUsername = input()
+                        print(""*10)
+
+                        print("Enter gp- to automatically generate a password or cp- to create your own custom password")
+                        print("-"*90)
+
+                        choice = input()
+                        print(""*10)
+
+
+                        if choice == "gp":
+                            # passCharacters=string.ascii_letters + string.hexdigits
+                            # accountPassword="".join(choice(passCharacters)for x in range(randint(8,16)))
+                            characters = string.ascii_letters + string.digits + string.punctuation
+                            accountPassword = ''.join(random.choice(characters) for i in range(16))
+                            print(f"Your generated {siteName} password is: {accountPassword}")
+
+                        elif choice=="cp":
+                                    print(f"Enter your {siteName} Password")
+                                    accountPassword=input()
+
+                        else:
+                            print("Invalid Choice,try again")
+
+                        save_new_userAccount(create_account(siteName, accountUsername, accountPassword))
+                        print("\n")
+                        print(f" Site/app name:{siteName} \n Account Name: {accountUsername} \n Password set: {accountPassword}")
+
+                    elif navigate == "view":
+                        if find_account(siteName):
+                            print("Here is the list of all your accounts: ")
+                            print("-"*35)
+        
+
+                            for account in display_accounts():
+                                print(f" Site Name: {account.siteName} \n Account Username: {account.accountUsername} \n Password: {account.accountPassword} \n")
+
+                        else:
+                            print('\n')
+                            print("Here is the list of all your accounts: ")
+                            print('\n')
+                            print("You don't seem to have any account credentials saved yet")
+                            print('\n')
+
+                    elif navigate == 'search':
+        
+                        print("Enter the site name of the account credentials you want to search")
+                        searchInput = input()
+                        if check_existing_accounts(searchInput):
+                                search_account = find_account(searchInput)
+                                print(f"{search_account.siteName}")
+                                print('-' * 30)
+
+                                print(f"Account  Username.....{search_account.accountUsername}")
+                                print(f"Account Password......{search_account.accountPassword}")
+                        else:
+                                print("That account does not exist")
+
+                    elif navigate == "exit":
+                        print("Bye .......")
+                        break
             
-            if find_user(loginPassword):
-                print("\n")
-                print(f"{loginUsername} Welcome to Password Manager App. Keep your Password secure")
-                print("-"*60)
-                print("Use these key terms to navigate the app")
-                print("add - add a new account credentials")
-                print("view - display all user accounts")
-                print("search - search account credentials")
-                print("exit - exit the app")
-                print(""*10)
 
-                navigate = input()
-                print("\n")
-                
-                if navigate == "add":
-                    print("Enter user account credentials")
-                    print("-"*25)
-                    print("Enter the site's or app's name")
-                    siteName = input()
-                    print(""*10)
-
-                    print("Enter accounts username")
-                    accountUsername = input()
-                    print(""*10)
-
-                    print("Enter gp- to automatically generate a password or cp- to create your own custom password")
-                    print("-"*90)
-
-                    choice = input()
-                    print(""*10)
-
-
-                    if choice == "gp":
-                        # passCharacters=string.ascii_letters + string.hexdigits
-                        # accountPassword="".join(choice(passCharacters)for x in range(randint(8,16)))
-                        characters = string.ascii_letters + string.digits + string.punctuation
-                        accountPassword = ''.join(random.choice(characters) for i in range(16))
-                        print(f"Your generated {siteName} password is: {accountPassword}")
-
-                    elif choice=="cp":
-                                print(f"Enter your {siteName} Password")
-                                accountPassword=input()
-
-                    else:
-                        print("Invalid Choice,try again")
-
-                    save_new_userAccount(create_account(siteName, accountUsername, accountPassword))
-                    print("\n")
-                    print(f" Site/app name:{siteName} \n Account Name: {accountUsername} \n Password set: {accountPassword}")
-
-                elif navigate == "view":
-                    if find_account(siteName):
-                        print("Here is the list of all your accounts: ")
-                        print("-"*35)
-    
-
-                        for account in display_accounts():
-                            print(f" Site Name: {account.siteName} \n Account Username: {account.accountUsername} \n Password: {account.accountPassword} \n")
-
-                    else:
-                        print('\n')
-                        print("Here is the list of all your accounts: ")
-                        print('\n')
-                        print("You don't seem to have any account credentials saved yet")
-                        print('\n')
-
-                elif navigate == 'search':
-    
-                    print("Enter the site name of the account credentials you want to search")
-                    searchInput = input()
-                    if check_existing_accounts(searchInput):
-                            search_account = find_account(searchInput)
-                            print(f"{search_account.siteName}")
-                            print('-' * 30)
-
-                            print(f"Account  Username.....{search_account.accountUsername}")
-                            print(f"Account Password......{search_account.accountPassword}")
-                    else:
-                            print("That account does not exist")
-
-
-
-
-                else:                    
-                    print("Not a valid option,please try again")
-                    print("\n")
+                    else:                    
+                        print("Invalid option, please try again")
+                        print("\n")
 
 
 
