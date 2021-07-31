@@ -52,20 +52,20 @@ class User:
 
     #A class method is a method that is bound to a class rather than its object. It doesn't require creation of a class instance, much like staticmethod.
     @classmethod
-    def find_by_username(cls, text):
+    def find_by_number(cls,number):
         """
-        Method that takes in a username and returns a user that matches that number.
+        Method that takes in a password as number and returns a user that matches that number
 
         Args:
-        text:  username to search for user and returns a user that matches the username.
+        number: password to search for Returns: user if that  password matches.
         """
-
         for user in cls.usersList:
-            if user.username == text:
+            if user.password == number:
                 return user
 
+   
     @classmethod
-    def if_user_exists(cls, text):
+    def if_user_exists(cls, number):
         '''
         Method that checks if a user exists from the usersList.
         Args:
@@ -74,7 +74,7 @@ class User:
             Boolean: True or false depending if the user exists
         '''
         for user in cls.usersList:
-            if user.username == text:
+            if user.username == number:
                 return True
                 return False
 
@@ -121,6 +121,7 @@ class Credentials:
         for userAccounts in cls.userAccounts:
             return cls.userAccounts
 
+  
     @classmethod
     def find_by_siteName(cls, text):
         """
@@ -132,6 +133,35 @@ class Credentials:
         for userAccounts in cls.userAccounts:
             if userAccounts.siteName == text:
                 return userAccounts
+
+    @classmethod
+    def account_exist(cls,text):
+        '''
+        Method that checks if a contact exists from the contact list.
+        Args:
+            number: Phone number to search if it exists
+        Returns :
+            Boolean: True or false depending if the contact exists
+        '''
+        for account in cls.userAccounts:
+            if account.siteName == text:
+                    return True
+
+        return False
+
+
+
+    @classmethod
+    def copy_accountUsername(cls,text):
+        foundaccount = Credentials.find_by_siteName(text)
+        pyperclip.copy(foundaccount.accountUsername)
+
+
+    @classmethod
+    def copy_accountPassword(cls,text):
+        foundaccount = Credentials.find_by_siteName(text)
+        pyperclip.copy(foundaccount.accountPassword)
+
 
     
 

@@ -65,19 +65,19 @@ class TestUser(unittest.TestCase):
         """
         self.assertEqual(User.display_users(), User.usersList)
 
-        
 
-    def test_find_user_by_username(self):
+    def test_find_user_by_number(self):
         """
-        test case to check if we can find a user by their password and display the user
+        test to check if we can find a user by their password and display the user
         """
 
         self.newUser.save_new_user()
-        testuser=User("TestFlorence", "TestNjeri", "TestFlonjeri", "TestFlon203")
+        testuser=User("firstname", "lastname", "username", "password")
         testuser.save_new_user()
 
-        found_user = User.find_by_username("TestFlonjeri")
-        self.assertEqual(found_user.username,testuser.username)
+        found_user = User.find_by_number("password")
+        self.assertEqual(found_user.password,testuser.password)
+
 
 
     def test_user_exists(self):
@@ -85,10 +85,10 @@ class TestUser(unittest.TestCase):
         test to check if we can return a Boolean if we cannot find the contact
         """
         self.newUser.save_new_user()
-        testuser=User("TestFlorence", "TestNjeri", "TestFlonjeri", "TestFlon203")
+        testuser=User("firstname", "lastname", "username", "password")
         testuser.save_new_user()
 
-        if_user_exists= User.if_user_exists("TestFlonjeri")
+        if_user_exists= User.if_user_exists("username")
         self.assertTrue(if_user_exists)
 
 
@@ -103,13 +103,109 @@ class TestCredentials(unittest.TestCase):
         """
         self.newAccount = Credentials("Instagram", "Widget", "12345")
 
+
     def tearDown(self):
         """
         tearDown method that does clean up after each test case has been return
         """
-        Credentials.userAccounts[]
+        Credentials.userAccounts=[]
+
+    
+    def test_init(self):
+        """
+        test case to test if the object is initialized properly
+        """
+        self.assertEqual(self.newAccount.siteName,"Instagram")
+        self.assertEqual(self.newAccount.accountUsername, "Widget")
+        self.assertEqual(self.newAccount.accountPassword, "12345")
 
 
+    def test_save_account(self):
+        """
+        test case to test if the credentials object is saved into userAccounts
+        """
+
+        self.newAccount.save_new_userAccount()
+        self.assertEqual(len(Credentials.userAccounts),1)
+
+
+    def test_save_multiple_accounts(self):
+        """
+        test case to test if we can save multiple credentials to userAccounts
+        """
+
+        self.newAccount.save_new_userAccount()
+        testaccount = Credentials("Facebook", "Moron", "54321" )
+        testaccount.save_new_userAccount()
+        self.assertEqual(len(Credentials.userAccounts),2)
+
+     
+
+    
+    def test_delete_account(self):
+        """
+        test case to test if we can remove a credential from our userAccount
+        """
+        self.newAccount.save_new_userAccount()
+        testaccount = Credentials("Instagram", "Widget", "12345")
+        testaccount.save_new_userAccount()
+        self.newAccount.delete_user_account()
+        self.assertEqual(len(Credentials.userAccounts),1)
+
+
+    def test_account_exists(self):
+            '''
+            test to check if we can return a Boolean  if we cannot find the contact.
+            '''
+
+            self.newAccount.save_new_userAccount()
+            test_contact = Credentials("Instagram", "Widget", "12345") 
+            test_contact.save_new_userAccount()
+            account_exists = Credentials.account_exist("Instagram")
+
+            self.assertTrue(account_exists)
+
+
+
+
+    # def test_display_all_accounts(self):
+    #     """
+    #     test case to test if a list of all users saved can be returned        
+    #     """
+    #     self.assertEqual(Credentials.display_accounts(), Credentials.userAccounts)
+
+
+
+    def test_find_siteName(self):
+        """
+        test to check if we can find  and display an account credential using site name 
+        """
+        self.newAccount.save_new_userAccount()
+        testaccount = Credentials("Facebook", "Moron", "54321")
+        testaccount.save_new_userAccount()
+
+        foundaccount = Credentials.find_by_siteName("Facebook")
+        self.assertEqual(foundaccount.siteName, testaccount.siteName)
+
+
+    # def test_copy_accountUsername(self):
+    #     '''
+    #     Test to confirm that we are copying the account username from a found credentials
+    #     '''
+
+    #     self.newAccount.save_new_userAccount()
+    #     Credentials.copy_accountUsername("Facebook")
+    #     self.assertEqual(self.newAccount.accountUsername, pyperclip.paste())
+
+
+    # def test_copy_accountPassword(self):
+    #     '''
+    #     Test to confirm that we are copying the account password from a found credentials
+    #     '''
+
+    #     self.newAccount.save_new_userAccount()
+    #     Credentials.copy_accountPassword("Facebook")
+    #     self.assertEqual(self.newAccount.accountPassword, pyperclip.paste())
 
 
 
