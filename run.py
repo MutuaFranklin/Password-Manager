@@ -119,7 +119,7 @@ def main():
                 print("\n")
                 while True:
                     print(f"{loginUsername} Welcome to Password Manager App. Keep your Password secure")
-                    print("-"*60)
+                    print("-"*64)
                     print("Use these key terms to navigate the app")
                     print("add - add a new account credentials")
                     print("view - display all user accounts")
@@ -165,16 +165,17 @@ def main():
                         save_new_userAccount(create_account(siteName, accountUsername, accountPassword))
                         print("\n")
                         print(f" Site/app name:{siteName} \n Account Name: {accountUsername} \n Password set: {accountPassword}")
+                        print('\n')
 
                     elif navigate == "view":
                         if find_account(siteName):
                             print("Here is the list of all your accounts: ")
-                            print("-"*35)
+                            print("-"*39)
         
 
                             for account in display_accounts():
                                 print(f" Site Name: {account.siteName} \n Account Username: {account.accountUsername} \n Password: {account.accountPassword} \n")
-
+                                print('\n')
                         else:
                             print('\n')
                             print("Here is the list of all your accounts: ")
@@ -188,7 +189,7 @@ def main():
                         searchInput = input()
                         if check_existing_accounts(searchInput):
                                 search_account = find_account(searchInput)
-                                print(f"{search_account.siteName}")
+                                print(f"ame: {search_account.siteName}")
                                 print('-' * 30)
 
                                 print(f"Account Username.....{search_account.accountUsername}")

@@ -133,8 +133,7 @@ class Credentials:
         """
         method returns User userslist
         """
-        for userAccounts in cls.userAccounts:
-            return cls.userAccounts
+        return cls.userAccounts
 
   
     @classmethod
@@ -168,12 +167,18 @@ class Credentials:
 
     @classmethod
     def copy_accountUsername(cls,text):
+        '''
+        Test to confirm that we are copying the account username from a found account credentials
+        '''
         foundaccount = Credentials.find_by_siteName(text)
         pyperclip.copy(foundaccount.accountUsername)
 
 
     @classmethod
     def copy_accountPassword(cls,text):
+        '''
+        Test to confirm that we are copying the account password from a found account credentials
+        '''
         foundaccount = Credentials.find_by_siteName(text)
         pyperclip.copy(foundaccount.accountPassword)
 

@@ -180,11 +180,13 @@ class TestCredentials(unittest.TestCase):
 
 
 
-    # def test_display_all_accounts(self):
-    #     """
-    #     test case to test if a list of all users saved can be returned        
-    #     """
-    #     self.assertEqual(Credentials.display_accounts(), Credentials.userAccounts)
+    def test_display_all_accounts(self):
+        """
+        test case to test if a list of all users saved can be returned        
+        """
+        self.assertEqual(Credentials.display_accounts(), Credentials.userAccounts)
+
+    
 
 
 
