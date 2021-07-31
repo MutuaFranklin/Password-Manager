@@ -70,13 +70,13 @@ def main():
         print(""*10)
         print("Hello, Welcome to password manager. If a registered user, Select Login otherwise SignUp")
         print("-"*93)
-        print("LogIn or SignUp")
+        print("Use l for LogIn or s for SignUp")
         print(""*10)
 
         selection = input()
         print(""*10)
 
-        if selection == "SignUp":
+        if selection == "SignUp" or selection == "s":
             print("Create a user account")
             print("-"*21)
 
@@ -103,7 +103,7 @@ def main():
             print(f"Thank you {username} for registering an account with us. Now you can login")
             print("\n")
 
-        elif selection == "LogIn":
+        elif selection == "LogIn" or selection == "l":
             print("Login to your user account")
             print("-"*30)
 
@@ -114,9 +114,10 @@ def main():
             print("Enter your password..")
             loginPassword=input()
 
-            while True:
-                if find_user(loginPassword):
-                    print("\n")
+            
+            if find_user(loginPassword):
+                print("\n")
+                while True:
                     print(f"{loginUsername} Welcome to Password Manager App. Keep your Password secure")
                     print("-"*60)
                     print("Use these key terms to navigate the app")
@@ -190,8 +191,9 @@ def main():
                                 print(f"{search_account.siteName}")
                                 print('-' * 30)
 
-                                print(f"Account  Username.....{search_account.accountUsername}")
+                                print(f"Account Username.....{search_account.accountUsername}")
                                 print(f"Account Password......{search_account.accountPassword}")
+                                print('\n')
                         else:
                                 print("That account does not exist")
 
@@ -203,15 +205,11 @@ def main():
                     else:                    
                         print("Invalid option, please try again")
                         print("\n")
-
-
-
         
 
             else:
                 print("Incorrect username or password,please try again")
                 print("\n")
-
 
         
         else:

@@ -78,6 +78,18 @@ class TestUser(unittest.TestCase):
         found_user = User.find_by_number("password")
         self.assertEqual(found_user.password,testuser.password)
 
+    def test_find_user_by_username(self):
+        """
+        test to check if we can find a user by their password and display the user
+        """
+
+        self.newUser.save_new_user()
+        testuser=User("firstname", "lastname", "username", "password")
+        testuser.save_new_user()
+
+        found_user = User.find_by_username("username")
+        self.assertEqual(found_user.username,testuser.username)
+
 
 
     def test_user_exists(self):

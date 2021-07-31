@@ -63,6 +63,21 @@ class User:
             if user.password == number:
                 return user
 
+
+    @classmethod
+    def find_by_username(cls,text):
+        """
+        Method that takes in a username as text and returns a user that matches that username
+
+        Args:
+        text: username to search for users and Returns: user if that  username matches.
+        """
+        for user in cls.usersList:
+            if user.username == text:
+                return user
+
+   
+
    
     @classmethod
     def if_user_exists(cls, number):
