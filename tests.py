@@ -1,6 +1,6 @@
 import unittest
 from unittest.case import TestCase
-from user import Credentials, User
+from appClasses import Credentials, User
 import pyperclip
 
 

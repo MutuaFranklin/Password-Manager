@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.8
-from user import User
-from user import Credentials
+from appClasses import User
+from appClasses import Credentials
 import pyperclip
 import string
 import random
@@ -134,7 +134,7 @@ def main():
                     if navigate == "add":
                         print("Enter user account credentials")
                         print("-"*30)
-                        print("Enter the site's or app's name")
+                        print("Enter the site or app name")
                         siteName = input()
                         print(""*10)
 
