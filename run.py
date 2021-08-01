@@ -65,6 +65,7 @@ def find_account(text):
 
 
 def main():
+
     User.usersList =[]
     Credentials.userAccounts =[]
 
@@ -131,17 +132,17 @@ def main():
                             print("-"*64)
                             print("Use these key terms to navigate the app:-")
                             print(""*10)
-                            print(" add - add a new account credentials")
-                            print(" view - display all user accounts")
-                            print(" search - search account credentials")
-                            print(" del - delete selected account credentials")
-                            print(" exit - exit the app")
+                            print(" ac - add a new account credentials")
+                            print(" vc - display all user accounts")
+                            print(" sc - search account credentials")
+                            print(" dc - delete selected account credentials")
+                            print(" ex - exit the app")
                             print(""*10)
 
                             navigate = input().lower()
                             print("\n")
                             
-                            if navigate == "add":
+                            if navigate == "ac":
                                 print("Enter user account credentials")
                                 print("-"*30)
                                 print("Enter the site or app name")
@@ -178,7 +179,7 @@ def main():
                                 print(f" Site/app name:{siteName} \n Account Name: {accountUsername} \n Password set: {accountPassword}")
                                 print('\n')
 
-                            elif navigate == "view":
+                            elif navigate == "vc":
                                 if len(Credentials.userAccounts) >= 1:
                                     if find_account(siteName):
                                         print("Here is the list of all your accounts: ")
@@ -197,7 +198,7 @@ def main():
                                     print("   You don't seem to have any account credentials saved yet!!")
                                     print('\n')
 
-                            elif navigate == 'search':
+                            elif navigate == 'sc':
                                 if len(Credentials.userAccounts) >= 1:
                 
                                     print("Enter the site name of the account credentials you want to search")
@@ -221,7 +222,7 @@ def main():
                                     print('\n')
 
 
-                            elif navigate == "del":
+                            elif navigate == "dc":
                                 if len(Credentials.userAccounts) >= 1:
                                     if find_account(siteName):
                                         print("Here is the list of all your accounts: ")
@@ -279,25 +280,30 @@ def main():
                             
 
 
-                            elif navigate == "exit":
+                            elif navigate == "ex":
                                 print("Bye .......")
+                                print('\n')
                                 break
+                                
                     
 
                             else:                    
                                 print("Invalid option, please try again")
                                 print("\n")
-            
+                                
+                        
+                    break
 
                 else:
                     print("Incorrect username or password, please try again")
                     print("\n")
-                    
-
+                         
+                
         
         else:
             print("Incorrect option,choose from the one's listed")
             print("\n")
+            
         
 
 
