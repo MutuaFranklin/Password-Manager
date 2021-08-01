@@ -147,7 +147,7 @@ class TestCredentials(unittest.TestCase):
         """
 
         self.newAccount.save_new_userAccount()
-        testaccount = Credentials("Facebook", "Moron", "54321" )
+        testaccount = Credentials("Instagram", "Widget", "12345" )
         testaccount.save_new_userAccount()
         self.assertEqual(len(Credentials.userAccounts),2)
 
@@ -195,10 +195,10 @@ class TestCredentials(unittest.TestCase):
         test to check if we can find  and display an account credential using site name 
         """
         self.newAccount.save_new_userAccount()
-        testaccount = Credentials("Facebook", "Moron", "54321")
+        testaccount = Credentials("Instagram", "Widget", "12345")
         testaccount.save_new_userAccount()
 
-        foundaccount = Credentials.find_by_siteName("Facebook")
+        foundaccount = Credentials.find_by_siteName("Instagram")
         self.assertEqual(foundaccount.siteName, testaccount.siteName)
 
 
@@ -208,7 +208,7 @@ class TestCredentials(unittest.TestCase):
     #     '''
 
     #     self.newAccount.save_new_userAccount()
-    #     Credentials.copy_accountUsername("Facebook")
+    #     Credentials.copy_accountUsername("Widget")
     #     self.assertEqual(self.newAccount.accountUsername, pyperclip.paste())
 
 
