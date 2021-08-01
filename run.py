@@ -179,97 +179,104 @@ def main():
                                 print('\n')
 
                             elif navigate == "view":
-                                if find_account(siteName):
-                                    print("Here is the list of all your accounts: ")
-                                    print("-"*39)
-                
+                                if len(Credentials.userAccounts) >= 1:
+                                    if find_account(siteName):
+                                        print("Here is the list of all your accounts: ")
+                                        print("-"*39)
+                    
 
-                                    for account in display_accounts():
-                                        print(f" Site Name: {account.siteName} \n Account Username: {account.accountUsername} \n Password: {account.accountPassword} \n")
-                                        print('\n')
+                                        for account in display_accounts():
+                                            print(f" Site Name: {account.siteName} \n Account Username: {account.accountUsername} \n Password: {account.accountPassword} \n")
+                                            print('\n')
+                                    else:
+                                        print("Account does not exits")
                                 else:
                                     print('\n')
                                     print("Here is the list of all your accounts: ")
                                     print('\n')
-                                    print("You don't seem to have any account credentials saved yet")
+                                    print("   You don't seem to have any account credentials saved yet!!")
                                     print('\n')
 
                             elif navigate == 'search':
+                                if len(Credentials.userAccounts) >= 1:
                 
-                                print("Enter the site name of the account credentials you want to search")
-                                searchInput = input().lower()
-                                if check_existing_accounts(searchInput):
-                                        print(""*10)
-                                        search_account = find_account(searchInput)
-                                        print(""*10)
-                                        print(f"Site Name: {search_account.siteName}")
-                                        print('-' * 30)
+                                    print("Enter the site name of the account credentials you want to search")
+                                    searchInput = input().lower()
+                                    if check_existing_accounts(searchInput):
+                                            print(""*10)
+                                            search_account = find_account(searchInput)
+                                            print(""*10)
+                                            print(f"Site Name: {search_account.siteName}")
+                                            print('-' * 30)
 
-                                        print(f"Account Username.....{search_account.accountUsername}")
-                                        print(f"Account Password......{search_account.accountPassword}")
-                                        print('\n')
-                                else:
+                                            print(f"Account Username.....{search_account.accountUsername}")
+                                            print(f"Account Password......{search_account.accountPassword}")
+                                            print('\n')
+                                    else:
                                         print("That account does not exist")
+
+                                else:
+                                    print('\n')
+                                    print("   You don't seem to have any account credentials saved yet!!")
+                                    print('\n')
 
 
                             elif navigate == "del":
-                                if find_account(siteName):
-                                    print("Here is the list of all your accounts: ")
-                                    print("-"*39)
-                
+                                if len(Credentials.userAccounts) >= 1:
+                                    if find_account(siteName):
+                                        print("Here is the list of all your accounts: ")
+                                        print("-"*39)
+                    
 
-                                    for account in display_accounts():
-                                        print(f" Site Name: {account.siteName} \n Account Username: {account.accountUsername} \n Password: {account.accountPassword} \n")
+                                        for account in display_accounts():
+                                            print(f" Site Name: {account.siteName} \n Account Username: {account.accountUsername} \n Password: {account.accountPassword} \n")
+                                            print('\n')
+
+                                        print("Enter the site name of the account credentials you want to delete")
+                                        print("-"*60)
+                                        delInput = input().lower()
+
                                         print('\n')
 
-                                    print("Enter the site name of the account credentials you want to delete")
-                                    print("-"*60)
-                                    delInput = input().lower()
-                                    print('\n')
-                                    if check_existing_accounts(delInput):
-                                            print(""*10)
-                                            del_account = find_account(delInput)
-                                            print(""*10)
-                                            print(f"Are you sure you want to delete the account with the following credentials: Yes or No")
-                                            print(""*10)
+                                        if check_existing_accounts(delInput):
+                                                print(""*10)
+                                                del_account = find_account(delInput)
+                                                print(""*10)
+                                                print(f"Are you sure you want to delete the account with the following credentials: Yes or No")
+                                                print(""*10)
 
-                                            print(f"Account Site Name.....{del_account.siteName}")
-                                            print(f"Account Username.....{del_account.accountUsername}")
-                                            print(f"Account Password......{del_account.accountPassword}")
-                                            print('\n')
-
-                                            delete = input().lower()
-                                            print('\n')
-
-                                            if delete == "yes":
-                                                delete_user_account(del_account)
-                                            
-
-                                                print(f"Your account credentials has been successfully deleted")
-                                                print("Your new list of accounts includes: ")
-                                                print("--"*20)
-                                                for accountList in Credentials.userAccounts:
-                                                    print(f"Site Name: {accountList.siteName}")
-                                                    print(f"Account Name: {accountList.accountUsername}")
-                                                    print(f"Account Password: {accountList.accountPassword}")
-                                                    print('\n')
-
-                                            elif delete == "no":
-                                                print("Okay, Navigate to other options below....")
+                                                print(f"Account Site Name.....{del_account.siteName}")
+                                                print(f"Account Username.....{del_account.accountUsername}")
+                                                print(f"Account Password......{del_account.accountPassword}")
                                                 print('\n')
-                                    else:
-                                        print("The account requested does not seem to exist")
 
-                                    
+                                                delete = input().lower()
+                                                print('\n')
 
-                                    
-                                else:
-                                    print('\n')
-                                    print("Here is the list of all your accounts: ")
+                                                if delete == "yes":
+                                                    delete_user_account(del_account)
+                                                
+
+                                                    print(f"Your account credentials has been successfully deleted")
+                                                    print("Your new list of accounts includes: ")
+                                                    print("--"*20)
+                                                    for accountList in Credentials.userAccounts:
+                                                        print(f"Site Name: {accountList.siteName}")
+                                                        print(f"Account Name: {accountList.accountUsername}")
+                                                        print(f"Account Password: {accountList.accountPassword}")
+                                                        print('\n')
+
+                                                elif delete == "no":
+                                                    print("Okay, Navigate to other options below....")
+                                                    print('\n')
+                                        else:
+                                            print("The account requested does not seem to exist")
+                                        
+                                else:                                      
                                     print('\n')
                                     print("You don't seem to have any account credentials saved yet")
                                     print('\n')
-                           
+                            
 
 
                             elif navigate == "exit":
@@ -285,7 +292,7 @@ def main():
                 else:
                     print("Incorrect username or password, please try again")
                     print("\n")
-                    break
+                    
 
         
         else:
