@@ -92,9 +92,9 @@ def main():
     while True:
 
         print(""*10)
-        print("Hello, Welcome to password manager. If a registered user, Select Login otherwise SignUp")
-        print("-"*87)
-        print("Use l for LogIn or s for SignUp")
+        print("Hello, Welcome to password manager. If a registered user, Select Login otherwise SignUp.")
+        print("-"*90)
+        print("Use l for LogIn, s for SignUp or x for exit")
         print(""*10)
 
         selection = input()
@@ -141,12 +141,15 @@ def main():
                 loginPassword=input().lower()
 
                 for user in User.usersList:
-                    if ((user.username == loginUsername) and (user.password == loginPassword)):
-                        
+                    if not ((user.username == loginUsername) and (user.password == loginPassword)):
+                    
                         print("\n")
-
+                        print("Incorrect username or password, please try again")
+                        print("\n")
+                            
+                    else:
                         while True:
-
+                            print('\n')
                             print(f"{user.username} Welcome to Password Manager App. Keep your Password secure")
                             print("-"*64)
                             print("Use these key terms to navigate the app:-")
@@ -155,7 +158,7 @@ def main():
                             print(" vc - display all user accounts")
                             print(" sc - search account credentials")
                             print(" dc - delete selected account credentials")
-                            print(" ex - exit the app")
+                            print(" q - quit the  navigation")
                             print(""*10)
 
                             navigate = input().lower()
@@ -302,8 +305,8 @@ def main():
                             
 
 
-                            elif navigate == "ex":
-                                print("Bye, Have a good day pal.......")
+                            elif navigate == "q":
+                                print("Back to home")
                                 print('\n')
                                 break
                                 
@@ -311,17 +314,13 @@ def main():
 
                             else:                    
                                 print("Invalid option, please try again")
-                                print("\n")
-                                
-                        
-                    
-
-                else:
-                    print("\n")
-                    print("Incorrect username or password, please try again")
-                    print("\n")
+                                print("\n")                   
+                break
+                
                                    
-                         
+        elif selection == "x":
+            print("Thank you for using password manager.")
+            break               
                 
         
         else:
@@ -329,8 +328,6 @@ def main():
             print("\n")
             
         
-
-
 
 
 
