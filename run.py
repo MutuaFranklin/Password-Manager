@@ -7,38 +7,50 @@ import random
 
 
 def create_user(firstname, lastname, username, password):
+    '''
+    Function to create a new user
+    '''
     newUser= User(firstname,lastname, username, password)
 
     return newUser
 
 
 def save_new_user(user):
+    '''
+    Function to save new  user
+    '''
     user.save_new_user()
 
 
 def delete_user(user):
+    '''
+    Function to delete a user
+    '''
     user.delete_user()
 
 
-def display_users():
-    return User.display_users()
-
-
-def find_user(number):
-    return User.find_by_number(number)
 
 
 
 def create_account(siteName, accountUsername, accountPassword):
+    '''
+    Function to create a new account credentials
+    '''
     newAccount= Credentials(siteName, accountUsername, accountPassword)
     return newAccount
 
 
 def save_new_userAccount(user):
+    '''
+    Function to save new account credentials
+    '''
     user.save_new_userAccount()
 
 
 def delete_user_account(user):
+    '''
+    Function to delete a account credentials
+    '''
     user.delete_user_account()
 
 
@@ -51,10 +63,17 @@ def check_existing_accounts(text):
 
 
 def display_accounts():
+    '''
+    Function that return all saved credentials
+    '''
+
     return Credentials.display_accounts()
     
 
 def find_account(number):
+    '''
+    Function that return all saved credentials
+    '''
     return Credentials.find_by_number(number)
 
 
@@ -239,40 +258,43 @@ def main():
 
                                         print('\n')
 
-                                        if check_existing_accounts(delInput):
-                                                print(""*10)
-                                                del_account = find_account(delInput)
-                                                print(""*10)
-                                                print(f"Are you sure you want to delete the account with the following credentials: Yes or No")
-                                                print(""*10)
+                                        if len(Credentials.userAccounts) >= 1:
 
-                                                print(f"Account Site Name.....{del_account.siteName}")
-                                                print(f"Account Username.....{del_account.accountUsername}")
-                                                print(f"Account Password......{del_account.accountPassword}")
-                                                print('\n')
+                                            if check_existing_accounts(delInput):
+                                                    print(""*10)
+                                                    del_account = find_account(delInput)
+                                                    print(""*10)
+                                                    print(f"Are you sure you want to delete the account with the following credentials: Yes or No")
+                                                    print(""*10)
 
-                                                delete = input().lower()
-                                                print('\n')
-
-                                                if delete == "yes":
-                                                    delete_user_account(del_account)
-                                                
-
-                                                    print(f"Your account credentials has been successfully deleted")
-                                                    print("Your new list of accounts includes: ")
-                                                    print("--"*20)
-                                                    for accountList in Credentials.userAccounts:
-                                                        print(f"Site Name: {accountList.siteName}")
-                                                        print(f"Account Name: {accountList.accountUsername}")
-                                                        print(f"Account Password: {accountList.accountPassword}")
-                                                        print('\n')
-
-                                                elif delete == "no":
-                                                    print("Okay, Navigate to other options below....")
+                                                    print(f"Account Site Name.....{del_account.siteName}")
+                                                    print(f"Account Username.....{del_account.accountUsername}")
+                                                    print(f"Account Password......{del_account.accountPassword}")
                                                     print('\n')
+
+                                                    delete = input().lower()
+                                                    print('\n')
+
+                                                    if delete == "yes":
+                                                        delete_user_account(del_account)
+                                                    
+
+                                                        print(f"Your account credentials has been successfully deleted. Your new list of accounts includes:-")
+                                                        print("--"*50)
+                                                        for accountList in Credentials.userAccounts:
+                                                            print(f"Site Name: {accountList.siteName}")
+                                                            print(f"Account Name: {accountList.accountUsername}")
+                                                            print(f"Account Password: {accountList.accountPassword}")
+                                                            print('\n')
+
+                                                    elif delete == "no":
+                                                        print("Okay, Navigate to other options below....")
+                                                        print('\n')
+                                            else:
+                                                print("The account requested does not seem to exist")
                                         else:
-                                            print("The account requested does not seem to exist")
-                                        
+                                            print("You have zero account credentials")
+                                            
                                 else:                                      
                                     print('\n')
                                     print("You don't seem to have any account credentials saved yet")
@@ -281,7 +303,7 @@ def main():
 
 
                             elif navigate == "ex":
-                                print("Bye .......")
+                                print("Bye, Have a good day pal.......")
                                 print('\n')
                                 break
                                 
@@ -292,11 +314,13 @@ def main():
                                 print("\n")
                                 
                         
-                    break
+                    
 
                 else:
+                    print("\n")
                     print("Incorrect username or password, please try again")
                     print("\n")
+                                   
                          
                 
         
